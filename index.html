@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script>
+        function validateForm() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let phone = document.getElementById("phone").value;
+            let errorMessage = "";
+
+            // Validate username
+            if (username == "") {
+                errorMessage += "Username is required.\n";
+            }
+
+            // Validate email
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email == "") {
+                errorMessage += "Email is required.\n";
+            } else if (!emailPattern.test(email)) {
+                errorMessage += "Please enter a valid email address.\n";
+            }
+
+            // Validate password
+            if (password == "") {
+                errorMessage += "Password is required.\n";
+            } else if (password.length < 6) {
+                errorMessage += "Password must be at least 6 characters long.\n";
+            }
+
+            // Validate confirm password
+            if (confirmPassword == "") {
+                errorMessage += "Please confirm your password.\n";
+            } else if (password !== confirmPassword) {
+                errorMessage += "Passwords do not match.\n";
+            }
+
+            // Validate phone number
+            let phonePattern = /^[0-9]{10}$/;
+            if (phone == "") {
+                errorMessage += "Phone number is required.\n";
+            } else if (!phonePattern.test(phone)) {
+                errorMessage += "Please enter a valid phone number (10 digits).\n";
+            }
+
+            if (errorMessage != "") {
+                alert(errorMessage);
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone"><br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
